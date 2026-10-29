@@ -21,6 +21,9 @@ if (isset($_COOKIE['VISIT_NUMBER']) && $_COOKIE['VISIT_NUMBER'] == 0) {
 
 // set visit_number cookie with count, with expiration for 2 full weeks
 setcookie("VISIT_NUMBER", 1 + $visitcount, time() + 3600 * 24 * 14);
+
+// Set a random number for the cookie; 86400 = 1 day
+setcookie("random_number", rand(1, 100), time() + (86400 * 30), "/");
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
