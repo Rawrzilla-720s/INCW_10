@@ -10,22 +10,23 @@ if (isset($_COOKIE['LAST_VISIT']) && strcmp($_COOKIE['LAST_VISIT'], "") == 0) {
 }
 
 $LAST_VISIT = $today . " at " . $timestamp;
+// set last_visit cookie with date/time, with expiration for 2 full weeks
+setcookie("LAST_VISIT", $LAST_VISIT, time() + 3600 * 24 * 14);
+
 if (isset($_COOKIE['VISIT_NUMBER']) && $_COOKIE['VISIT_NUMBER'] == 0) {
    $visitcount = 0;
 } else {
    $visitcount = isset($_COOKIE['VISIT_NUMBER']) ? $_COOKIE['VISIT_NUMBER'] : 0;
 }
-?>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<?php
-// set last_visit cookie with date/time, with expiration for 2 full weeks
-setcookie("LAST_VISIT", $LAST_VISIT, time() + 3600 * 24 * 14);
 // set visit_number cookie with count, with expiration for 2 full weeks
 setcookie("VISIT_NUMBER", 1 + $visitcount, time() + 3600 * 24 * 14);
+
 // Set a random number for the cookie; 86400 = 1 day
 setcookie("random_number", rand(1, 100), time() + (86400 * 30), "/");
 ?>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
     <META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
